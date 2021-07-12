@@ -25,11 +25,11 @@ public final class ResourceAttributes {
   public static final AttributeKey<String> CLOUD_ACCOUNT_ID = stringKey("cloud.account.id");
 
   /**
-   * The geographical region the resource is running. Refer to your provider&#39;s docs to see the
-   * available regions, for example [AWS
-   * regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure
-   * regions](https://azure.microsoft.com/en-us/global-infrastructure/geographies/), or [Google
-   * Cloud regions](https://cloud.google.com/about/locations).
+   * The geographical region the resource is running. Refer to your provider's docs to see the
+   * available regions, for example <a
+   * href="https://aws.amazon.com/about-aws/global-infrastructure/regions_az/">AWS regions</a>, <a
+   * href="https://azure.microsoft.com/en-us/global-infrastructure/geographies/">Azure regions</a>,
+   * or <a href="https://cloud.google.com/about/locations">Google Cloud regions</a>.
    */
   public static final AttributeKey<String> CLOUD_REGION = stringKey("cloud.region");
 
@@ -37,7 +37,9 @@ public final class ResourceAttributes {
    * Cloud regions often have multiple, isolated locations known as zones to increase availability.
    * Availability zone represents the zone where the resource is running.
    *
-   * <p>Note: Availability zones are called &#34;zones&#34; on Google Cloud.
+   * <p>Notes:
+   *
+   * <p>Availability zones are called &quot;zones&quot; on Google Cloud.
    */
   public static final AttributeKey<String> CLOUD_AVAILABILITY_ZONE =
       stringKey("cloud.availability_zone");
@@ -45,33 +47,38 @@ public final class ResourceAttributes {
   /**
    * The cloud platform in use.
    *
-   * <p>Note: The prefix of the service SHOULD match the one specified in `cloud.provider`.
+   * <p>Notes:
+   *
+   * <p>The prefix of the service SHOULD match the one specified in <code>cloud.provider</code>.
    */
   public static final AttributeKey<String> CLOUD_PLATFORM = stringKey("cloud.platform");
 
   /**
-   * The Amazon Resource Name (ARN) of an [ECS container
-   * instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
+   * The Amazon Resource Name (ARN) of an <a
+   * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html">ECS
+   * container instance</a>.
    */
   public static final AttributeKey<String> AWS_ECS_CONTAINER_ARN =
       stringKey("aws.ecs.container.arn");
 
   /**
-   * The ARN of an [ECS
-   * cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
+   * The ARN of an <a
+   * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html">ECS
+   * cluster</a>.
    */
   public static final AttributeKey<String> AWS_ECS_CLUSTER_ARN = stringKey("aws.ecs.cluster.arn");
 
   /**
-   * The [launch
-   * type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS
-   * task.
+   * The <a
+   * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html">launch
+   * type</a> for an ECS task.
    */
   public static final AttributeKey<String> AWS_ECS_LAUNCHTYPE = stringKey("aws.ecs.launchtype");
 
   /**
-   * The ARN of an [ECS task
-   * definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html).
+   * The ARN of an <a
+   * href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html">ECS
+   * task definition</a>.
    */
   public static final AttributeKey<String> AWS_ECS_TASK_ARN = stringKey("aws.ecs.task.arn");
 
@@ -88,8 +95,10 @@ public final class ResourceAttributes {
   /**
    * The name(s) of the AWS log group(s) an application is writing to.
    *
-   * <p>Note: Multiple log groups must be supported for cases like multi-container applications,
-   * where a single application has sidecar containers, and each write to their own log group.
+   * <p>Notes:
+   *
+   * <p>Multiple log groups must be supported for cases like multi-container applications, where a
+   * single application has sidecar containers, and each write to their own log group.
    */
   public static final AttributeKey<List<String>> AWS_LOG_GROUP_NAMES =
       stringArrayKey("aws.log.group.names");
@@ -97,8 +106,11 @@ public final class ResourceAttributes {
   /**
    * The Amazon Resource Name(s) (ARN) of the AWS log group(s).
    *
-   * <p>Note: See the [log group ARN format
-   * documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
+   * <p>Notes:
+   *
+   * <p>See the <a
+   * href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format">log
+   * group ARN format documentation</a>.
    */
   public static final AttributeKey<List<String>> AWS_LOG_GROUP_ARNS =
       stringArrayKey("aws.log.group.arns");
@@ -110,10 +122,12 @@ public final class ResourceAttributes {
   /**
    * The ARN(s) of the AWS log stream(s).
    *
-   * <p>Note: See the [log stream ARN format
-   * documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
-   * One log group can contain several log streams, so these ARNs necessarily identify both a log
-   * group and a log stream.
+   * <p>Notes:
+   *
+   * <p>See the <a
+   * href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format">log
+   * stream ARN format documentation</a>. One log group can contain several log streams, so these
+   * ARNs necessarily identify both a log group and a log stream.
    */
   public static final AttributeKey<List<String>> AWS_LOG_STREAM_ARNS =
       stringArrayKey("aws.log.stream.arns");
@@ -122,9 +136,9 @@ public final class ResourceAttributes {
   public static final AttributeKey<String> CONTAINER_NAME = stringKey("container.name");
 
   /**
-   * Container ID. Usually a UUID, as for example used to [identify Docker
-   * containers](https://docs.docker.com/engine/reference/run/#container-identification). The UUID
-   * might be abbreviated.
+   * Container ID. Usually a UUID, as for example used to <a
+   * href="https://docs.docker.com/engine/reference/run/#container-identification">identify Docker
+   * containers</a>. The UUID might be abbreviated.
    */
   public static final AttributeKey<String> CONTAINER_ID = stringKey("container.id");
 
@@ -138,89 +152,116 @@ public final class ResourceAttributes {
   public static final AttributeKey<String> CONTAINER_IMAGE_TAG = stringKey("container.image.tag");
 
   /**
-   * Name of the [deployment environment](https://en.wikipedia.org/wiki/Deployment_environment) (aka
-   * deployment tier).
+   * Name of the <a href="https://en.wikipedia.org/wiki/Deployment_environment">deployment
+   * environment</a> (aka deployment tier).
    */
   public static final AttributeKey<String> DEPLOYMENT_ENVIRONMENT =
       stringKey("deployment.environment");
 
   /**
-   * A unique identifier representing the device.
+   * A unique identifier representing the device
    *
-   * <p>Note: The device identifier MUST only be defined using the values outlined below. This value
-   * is not an advertising identifier and MUST NOT be used as such. On iOS (Swift or Objective-C),
-   * this value MUST be equal to the [vendor
-   * identifier](https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor).
-   * On Android (Java or Kotlin), this value MUST be equal to the Firebase Installation ID or a
-   * globally unique UUID which is persisted across sessions in your application. More information
-   * can be found [here](https://developer.android.com/training/articles/user-data-ids) on best
-   * practices and exact implementation details. Caution should be taken when storing personal data
-   * or anything which can identify a user. GDPR and data protection laws may apply, ensure you do
-   * your own due diligence.
+   * <p>Notes:
+   *
+   * <p>The device identifier MUST only be defined using the values outlined below. This value is
+   * not an advertising identifier and MUST NOT be used as such. On iOS (Swift or Objective-C), this
+   * value MUST be equal to the <a
+   * href="https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor">vendor
+   * identifier</a>. On Android (Java or Kotlin), this value MUST be equal to the Firebase
+   * Installation ID or a globally unique UUID which is persisted across sessions in your
+   * application. More information can be found <a
+   * href="https://developer.android.com/training/articles/user-data-ids">here</a> on best practices
+   * and exact implementation details. Caution should be taken when storing personal data or
+   * anything which can identify a user. GDPR and data protection laws may apply, ensure you do your
+   * own due diligence.
    */
   public static final AttributeKey<String> DEVICE_ID = stringKey("device.id");
 
   /**
-   * The model identifier for the device.
+   * The model identifier for the device
    *
-   * <p>Note: It&#39;s recommended this value represents a machine readable version of the model
-   * identifier rather than the market or consumer-friendly name of the device.
+   * <p>Notes:
+   *
+   * <p>It's recommended this value represents a machine readable version of the model identifier
+   * rather than the market or consumer-friendly name of the device.
    */
   public static final AttributeKey<String> DEVICE_MODEL_IDENTIFIER =
       stringKey("device.model.identifier");
 
   /**
-   * The marketing name for the device model.
+   * The marketing name for the device model
    *
-   * <p>Note: It&#39;s recommended this value represents a human readable version of the device
-   * model rather than a machine readable alternative.
+   * <p>Notes:
+   *
+   * <p>It's recommended this value represents a human readable version of the device model rather
+   * than a machine readable alternative.
    */
   public static final AttributeKey<String> DEVICE_MODEL_NAME = stringKey("device.model.name");
 
   /**
    * The name of the single function that this runtime instance executes.
    *
-   * <p>Note: This is the name of the function as configured/deployed on the FaaS platform and is
-   * usually different from the name of the callback function (which may be stored in the
-   * [`code.namespace`/`code.function`](../../trace/semantic_conventions/span-general.md#source-code-attributes)
-   * span attributes).
+   * <p>Notes:
+   *
+   * <p>This is the name of the function as configured/deployed on the FaaS platform and is usually
+   * different from the name of the callback function (which may be stored in the <a
+   * href="../../trace/semantic_conventions/span-general.md#source-code-attributes"><code>
+   * code.namespace</code>/<code>code.function</code></a> span attributes).
    */
   public static final AttributeKey<String> FAAS_NAME = stringKey("faas.name");
 
   /**
    * The unique ID of the single function that this runtime instance executes.
    *
-   * <p>Note: Depending on the cloud provider, use:
+   * <p>Notes:
    *
-   * <p>**AWS Lambda:** The function
-   * [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html). Take care
-   * not to use the &#34;invoked ARN&#34; directly but replace any [alias
-   * suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html) with the
-   * resolved function version, as the same runtime instance may be invokable with multiple
-   * different aliases. **GCP:** The [URI of the
-   * resource](https://cloud.google.com/iam/docs/full-resource-names) **Azure:** The [Fully
-   * Qualified Resource
-   * ID](https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id).
+   * <p>Depending on the cloud provider, use:
+   *
+   * <ul>
+   *   <li><strong>AWS Lambda:</strong> The function <a
+   *       href="https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">ARN</a>.
+   * </ul>
+   *
+   * <p>Take care not to use the &quot;invoked ARN&quot; directly but replace any <a
+   * href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias suffix</a>
+   * with the resolved function version, as the same runtime instance may be invokable with multiple
+   * different aliases.
+   *
+   * <ul>
+   *   <li><strong>GCP:</strong> The <a
+   *       href="https://cloud.google.com/iam/docs/full-resource-names">URI of the resource</a>
+   *   <li><strong>Azure:</strong> The <a
+   *       href="https://docs.microsoft.com/en-us/rest/api/resources/resources/get-by-id">Fully
+   *       Qualified Resource ID</a>.
+   * </ul>
    *
    * <p>On some providers, it may not be possible to determine the full ID at startup, which is why
    * this field cannot be made required. For example, on AWS the account ID part of the ARN is not
    * available without calling another AWS API which may be deemed too slow for a short-running
-   * lambda function. As an alternative, consider setting `faas.id` as a span attribute instead.
+   * lambda function. As an alternative, consider setting <code>faas.id</code> as a span attribute
+   * instead.
    */
   public static final AttributeKey<String> FAAS_ID = stringKey("faas.id");
 
   /**
    * The immutable version of the function being executed.
    *
-   * <p>Note: Depending on the cloud provider and platform, use:
+   * <p>Notes:
    *
-   * <p>**AWS Lambda:** The [function
-   * version](https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html) (an integer
-   * represented as a decimal string). **Google Cloud Run:** The
-   * [revision](https://cloud.google.com/run/docs/managing/revisions) (i.e., the function name plus
-   * the revision suffix). **Google Cloud Functions:** The value of the [`K_REVISION` environment
-   * variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
-   * **Azure Functions:** Not applicable. Do not set this attribute.
+   * <p>Depending on the cloud provider and platform, use:
+   *
+   * <ul>
+   *   <li><strong>AWS Lambda:</strong> The <a
+   *       href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html">function
+   *       version</a> (an integer represented as a decimal string).
+   *   <li><strong>Google Cloud Run:</strong> The <a
+   *       href="https://cloud.google.com/run/docs/managing/revisions">revision</a> (i.e., the
+   *       function name plus the revision suffix).
+   *   <li><strong>Google Cloud Functions:</strong> The value of the <a
+   *       href="https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically">
+   *       <code>K_REVISION</code> environment variable</a>.
+   *   <li><strong>Azure Functions:</strong> Not applicable. Do not set this attribute.
+   * </ul>
    */
   public static final AttributeKey<String> FAAS_VERSION = stringKey("faas.version");
 
@@ -228,16 +269,22 @@ public final class ResourceAttributes {
    * The execution environment ID as a string, that will be potentially reused for other invocations
    * to the same function/function version.
    *
-   * <p>Note: * **AWS Lambda:** Use the (full) log stream name.
+   * <p>Notes:
+   *
+   * <ul>
+   *   <li><strong>AWS Lambda:</strong> Use the (full) log stream name.
+   * </ul>
    */
   public static final AttributeKey<String> FAAS_INSTANCE = stringKey("faas.instance");
 
   /**
    * The amount of memory available to the serverless function in MiB.
    *
-   * <p>Note: It&#39;s recommended to set this attribute since e.g. too little memory can easily
-   * stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable
-   * `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information.
+   * <p>Notes:
+   *
+   * <p>It's recommended to set this attribute since e.g. too little memory can easily stop a Java
+   * AWS Lambda function from working correctly. On AWS Lambda, the environment variable <code>
+   * AWS_LAMBDA_FUNCTION_MEMORY_SIZE</code> provides this information.
    */
   public static final AttributeKey<Long> FAAS_MAX_MEMORY = longKey("faas.max_memory");
 
@@ -263,8 +310,8 @@ public final class ResourceAttributes {
   public static final AttributeKey<String> HOST_IMAGE_ID = stringKey("host.image.id");
 
   /**
-   * The version string of the VM image as defined in [Version
-   * Attributes](README.md#version-attributes).
+   * The version string of the VM image as defined in <a href="README.md#version-attributes">Version
+   * Attributes</a>.
    */
   public static final AttributeKey<String> HOST_IMAGE_VERSION = stringKey("host.image.version");
 
@@ -329,8 +376,8 @@ public final class ResourceAttributes {
   public static final AttributeKey<String> OS_TYPE = stringKey("os.type");
 
   /**
-   * Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver`
-   * or `lsb_release -a` commands.
+   * Human readable (not intended to be parsed) OS version information, like e.g. reported by <code>
+   * ver</code> or <code>lsb_release -a</code> commands.
    */
   public static final AttributeKey<String> OS_DESCRIPTION = stringKey("os.description");
 
@@ -338,8 +385,8 @@ public final class ResourceAttributes {
   public static final AttributeKey<String> OS_NAME = stringKey("os.name");
 
   /**
-   * The version string of the operating system as defined in [Version
-   * Attributes](../../resource/semantic_conventions/README.md#version-attributes).
+   * The version string of the operating system as defined in <a
+   * href="../../resource/semantic_conventions/README.md#version-attributes">Version Attributes</a>.
    */
   public static final AttributeKey<String> OS_VERSION = stringKey("os.version");
 
@@ -347,38 +394,40 @@ public final class ResourceAttributes {
   public static final AttributeKey<Long> PROCESS_PID = longKey("process.pid");
 
   /**
-   * The name of the process executable. On Linux based systems, can be set to the `Name` in
-   * `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`.
+   * The name of the process executable. On Linux based systems, can be set to the <code>Name</code>
+   * in <code>proc/[pid]/status</code>. On Windows, can be set to the base name of <code>
+   * GetProcessImageFileNameW</code>.
    */
   public static final AttributeKey<String> PROCESS_EXECUTABLE_NAME =
       stringKey("process.executable.name");
 
   /**
    * The full path to the process executable. On Linux based systems, can be set to the target of
-   * `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`.
+   * <code>proc/[pid]/exe</code>. On Windows, can be set to the result of <code>
+   * GetProcessImageFileNameW</code>.
    */
   public static final AttributeKey<String> PROCESS_EXECUTABLE_PATH =
       stringKey("process.executable.path");
 
   /**
    * The command used to launch the process (i.e. the command name). On Linux based systems, can be
-   * set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter
-   * extracted from `GetCommandLineW`.
+   * set to the zeroth string in <code>proc/[pid]/cmdline</code>. On Windows, can be set to the
+   * first parameter extracted from <code>GetCommandLineW</code>.
    */
   public static final AttributeKey<String> PROCESS_COMMAND = stringKey("process.command");
 
   /**
    * The full command used to launch the process as a single string representing the full command.
-   * On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to
-   * assemble it just for monitoring; use `process.command_args` instead.
+   * On Windows, can be set to the result of <code>GetCommandLineW</code>. Do not set this if you
+   * have to assemble it just for monitoring; use <code>process.command_args</code> instead.
    */
   public static final AttributeKey<String> PROCESS_COMMAND_LINE = stringKey("process.command_line");
 
   /**
    * All the command arguments (including the command/executable itself) as received by the process.
    * On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according
-   * to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based
-   * executables, this would be the full argv vector passed to `main`.
+   * to the list of null-delimited strings extracted from <code>proc/[pid]/cmdline</code>. For
+   * libc-based executables, this would be the full argv vector passed to <code>main</code>.
    */
   public static final AttributeKey<List<String>> PROCESS_COMMAND_ARGS =
       stringArrayKey("process.command_args");
@@ -408,37 +457,45 @@ public final class ResourceAttributes {
   /**
    * Logical name of the service.
    *
-   * <p>Note: MUST be the same for all instances of horizontally scaled services. If the value was
-   * not specified, SDKs MUST fallback to `unknown_service:` concatenated with
-   * [`process.executable.name`](process.md#process), e.g. `unknown_service:bash`. If
-   * `process.executable.name` is not available, the value MUST be set to `unknown_service`.
+   * <p>Notes:
+   *
+   * <p>MUST be the same for all instances of horizontally scaled services. If the value was not
+   * specified, SDKs MUST fallback to <code>unknown_service:</code> concatenated with <a
+   * href="process.md#process"><code>process.executable.name</code></a>, e.g. <code>
+   * unknown_service:bash</code>. If <code>process.executable.name</code> is not available, the
+   * value MUST be set to <code>unknown_service</code>.
    */
   public static final AttributeKey<String> SERVICE_NAME = stringKey("service.name");
 
   /**
-   * A namespace for `service.name`.
+   * A namespace for <code>service.name</code>.
    *
-   * <p>Note: A string value having a meaning that helps to distinguish a group of services, for
-   * example the team name that owns a group of services. `service.name` is expected to be unique
-   * within the same namespace. If `service.namespace` is not specified in the Resource then
-   * `service.name` is expected to be unique for all services that have no explicit namespace
-   * defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length
-   * namespace string is assumed equal to unspecified namespace.
+   * <p>Notes:
+   *
+   * <p>A string value having a meaning that helps to distinguish a group of services, for example
+   * the team name that owns a group of services. <code>service.name</code> is expected to be unique
+   * within the same namespace. If <code>service.namespace</code> is not specified in the Resource
+   * then <code>service.name</code> is expected to be unique for all services that have no explicit
+   * namespace defined (so the empty/unspecified namespace is simply one more valid namespace).
+   * Zero-length namespace string is assumed equal to unspecified namespace.
    */
   public static final AttributeKey<String> SERVICE_NAMESPACE = stringKey("service.namespace");
 
   /**
    * The string ID of the service instance.
    *
-   * <p>Note: MUST be unique for each instance of the same `service.namespace,service.name` pair (in
-   * other words `service.namespace,service.name,service.instance.id` triplet MUST be globally
-   * unique). The ID helps to distinguish instances of the same service that exist at the same time
-   * (e.g. instances of a horizontally scaled service). It is preferable for the ID to be persistent
-   * and stay the same for the lifetime of the service instance, however it is acceptable that the
-   * ID is ephemeral and changes during important lifetime events for the service (e.g. service
-   * restarts). If the service has no inherent unique ID that can be used as the value of this
-   * attribute it is recommended to generate a random Version 1 or Version 4 RFC 4122 UUID (services
-   * aiming for reproducible UUIDs may also use Version 5, see RFC 4122 for more recommendations).
+   * <p>Notes:
+   *
+   * <p>MUST be unique for each instance of the same <code>service.namespace,service.name</code>
+   * pair (in other words <code>service.namespace,service.name,service.instance.id</code> triplet
+   * MUST be globally unique). The ID helps to distinguish instances of the same service that exist
+   * at the same time (e.g. instances of a horizontally scaled service). It is preferable for the ID
+   * to be persistent and stay the same for the lifetime of the service instance, however it is
+   * acceptable that the ID is ephemeral and changes during important lifetime events for the
+   * service (e.g. service restarts). If the service has no inherent unique ID that can be used as
+   * the value of this attribute it is recommended to generate a random Version 1 or Version 4 RFC
+   * 4122 UUID (services aiming for reproducible UUIDs may also use Version 5, see RFC 4122 for more
+   * recommendations).
    */
   public static final AttributeKey<String> SERVICE_INSTANCE_ID = stringKey("service.instance.id");
 

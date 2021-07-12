@@ -21,10 +21,13 @@ public final class SemanticAttributes {
   public static final String SCHEMA_URL = "https://opentelemetry.io/schemas/1.5.0";
 
   /**
-   * The full invoked ARN as provided on the `Context` passed to the function
-   * (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
+   * The full invoked ARN as provided on the <code>Context</code> passed to the function (<code>
+   * Lambda-Runtime-Invoked-Function-Arn</code> header on the <code>/runtime/invocation/next</code>
+   * applicable).
    *
-   * <p>Note: This may be different from `faas.id` if an alias is involved.
+   * <p>Notes:
+   *
+   * <p>This may be different from <code>faas.id</code> if an alias is involved.
    */
   public static final AttributeKey<String> AWS_LAMBDA_INVOKED_ARN =
       stringKey("aws.lambda.invoked_arn");
@@ -45,53 +48,64 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> DB_USER = stringKey("db.user");
 
   /**
-   * The fully-qualified class name of the [Java Database Connectivity
-   * (JDBC)](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) driver used to connect.
+   * The fully-qualified class name of the <a
+   * href="https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/">Java Database Connectivity
+   * (JDBC)</a> driver used to connect.
    */
   public static final AttributeKey<String> DB_JDBC_DRIVER_CLASSNAME =
       stringKey("db.jdbc.driver_classname");
 
   /**
-   * If no [tech-specific attribute](#call-level-attributes-for-specific-technologies) is defined,
-   * this attribute is used to report the name of the database being accessed. For commands that
-   * switch the database, this should be set to the target database (even if the command fails).
+   * If no <a href="#call-level-attributes-for-specific-technologies">tech-specific attribute</a> is
+   * defined, this attribute is used to report the name of the database being accessed. For commands
+   * that switch the database, this should be set to the target database (even if the command
+   * fails).
    *
-   * <p>Note: In some SQL databases, the database name to be used is called &#34;schema name&#34;.
+   * <p>Notes:
+   *
+   * <p>In some SQL databases, the database name to be used is called &quot;schema name&quot;.
    */
   public static final AttributeKey<String> DB_NAME = stringKey("db.name");
 
   /**
    * The database statement being executed.
    *
-   * <p>Note: The value may be sanitized to exclude sensitive information.
+   * <p>Notes:
+   *
+   * <p>The value may be sanitized to exclude sensitive information.
    */
   public static final AttributeKey<String> DB_STATEMENT = stringKey("db.statement");
 
   /**
-   * The name of the operation being executed, e.g. the [MongoDB command
-   * name](https://docs.mongodb.com/manual/reference/command/#database-operations) such as
-   * `findAndModify`, or the SQL keyword.
+   * The name of the operation being executed, e.g. the <a
+   * href="https://docs.mongodb.com/manual/reference/command/#database-operations">MongoDB command
+   * name</a> such as <code>findAndModify</code>, or the SQL keyword.
    *
-   * <p>Note: When setting this to an SQL keyword, it is not recommended to attempt any client-side
-   * parsing of `db.statement` just to get this property, but it should be set if the operation name
-   * is provided by the library being instrumented. If the SQL statement has an ambiguous operation,
-   * or performs more than one operation, this value may be omitted.
+   * <p>Notes:
+   *
+   * <p>When setting this to an SQL keyword, it is not recommended to attempt any client-side
+   * parsing of <code>db.statement</code> just to get this property, but it should be set if the
+   * operation name is provided by the library being instrumented. If the SQL statement has an
+   * ambiguous operation, or performs more than one operation, this value may be omitted.
    */
   public static final AttributeKey<String> DB_OPERATION = stringKey("db.operation");
 
   /**
-   * The Microsoft SQL Server [instance
-   * name](https://docs.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15)
-   * connecting to. This name is used to determine the port of a named instance.
+   * The Microsoft SQL Server <a
+   * href="https://docs.microsoft.com/en-us/sql/connect/jdbc/building-the-connection-url?view=sql-server-ver15">instance
+   * name</a> connecting to. This name is used to determine the port of a named instance.
    *
-   * <p>Note: If setting a `db.mssql.instance_name`, `net.peer.port` is no longer required (but
-   * still recommended if non-standard).
+   * <p>Notes:
+   *
+   * <p>If setting a <code>db.mssql.instance_name</code>, <code>net.peer.port</code> is no longer
+   * required (but still recommended if non-standard).
    */
   public static final AttributeKey<String> DB_MSSQL_INSTANCE_NAME =
       stringKey("db.mssql.instance_name");
 
   /**
-   * The name of the keyspace being accessed. To be used instead of the generic `db.name` attribute.
+   * The name of the keyspace being accessed. To be used instead of the generic <code>db.name</code>
+   * attribute.
    */
   public static final AttributeKey<String> DB_CASSANDRA_KEYSPACE =
       stringKey("db.cassandra.keyspace");
@@ -100,8 +114,8 @@ public final class SemanticAttributes {
   public static final AttributeKey<Long> DB_CASSANDRA_PAGE_SIZE = longKey("db.cassandra.page_size");
 
   /**
-   * The consistency level of the query. Based on consistency values from
-   * [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
+   * The consistency level of the query. Based on consistency values from <a
+   * href="https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html">CQL</a>.
    */
   public static final AttributeKey<String> DB_CASSANDRA_CONSISTENCY_LEVEL =
       stringKey("db.cassandra.consistency_level");
@@ -110,8 +124,10 @@ public final class SemanticAttributes {
    * The name of the primary table that the operation is acting upon, including the schema name (if
    * applicable).
    *
-   * <p>Note: This mirrors the db.sql.table attribute but references cassandra rather than sql. It
-   * is not recommended to attempt any client-side parsing of `db.statement` just to get this
+   * <p>Notes:
+   *
+   * <p>This mirrors the db.sql.table attribute but references cassandra rather than sql. It is not
+   * recommended to attempt any client-side parsing of <code>db.statement</code> just to get this
    * property, but it should be set if it is provided by the library being instrumented. If the
    * operation is acting upon an anonymous table, or more than one table, this value MUST NOT be
    * set.
@@ -123,8 +139,8 @@ public final class SemanticAttributes {
       booleanKey("db.cassandra.idempotence");
 
   /**
-   * The number of times a query was speculatively executed. Not set or `0` if the query was not
-   * executed speculatively.
+   * The number of times a query was speculatively executed. Not set or <code>0</code> if the query
+   * was not executed speculatively.
    */
   public static final AttributeKey<Long> DB_CASSANDRA_SPECULATIVE_EXECUTION_COUNT =
       longKey("db.cassandra.speculative_execution_count");
@@ -138,20 +154,20 @@ public final class SemanticAttributes {
       stringKey("db.cassandra.coordinator.dc");
 
   /**
-   * The [HBase namespace](https://hbase.apache.org/book.html#_namespace) being accessed. To be used
-   * instead of the generic `db.name` attribute.
+   * The <a href="https://hbase.apache.org/book.html#_namespace">HBase namespace</a> being accessed.
+   * To be used instead of the generic <code>db.name</code> attribute.
    */
   public static final AttributeKey<String> DB_HBASE_NAMESPACE = stringKey("db.hbase.namespace");
 
   /**
-   * The index of the database being accessed as used in the [`SELECT`
-   * command](https://redis.io/commands/select), provided as an integer. To be used instead of the
-   * generic `db.name` attribute.
+   * The index of the database being accessed as used in the <a
+   * href="https://redis.io/commands/select"><code>SELECT</code> command</a>, provided as an
+   * integer. To be used instead of the generic <code>db.name</code> attribute.
    */
   public static final AttributeKey<Long> DB_REDIS_DATABASE_INDEX =
       longKey("db.redis.database_index");
 
-  /** The collection being accessed within the database stated in `db.name`. */
+  /** The collection being accessed within the database stated in <code>db.name</code>. */
   public static final AttributeKey<String> DB_MONGODB_COLLECTION =
       stringKey("db.mongodb.collection");
 
@@ -159,10 +175,12 @@ public final class SemanticAttributes {
    * The name of the primary table that the operation is acting upon, including the schema name (if
    * applicable).
    *
-   * <p>Note: It is not recommended to attempt any client-side parsing of `db.statement` just to get
-   * this property, but it should be set if it is provided by the library being instrumented. If the
-   * operation is acting upon an anonymous table, or more than one table, this value MUST NOT be
-   * set.
+   * <p>Notes:
+   *
+   * <p>It is not recommended to attempt any client-side parsing of <code>db.statement</code> just
+   * to get this property, but it should be set if it is provided by the library being instrumented.
+   * If the operation is acting upon an anonymous table, or more than one table, this value MUST NOT
+   * be set.
    */
   public static final AttributeKey<String> DB_SQL_TABLE = stringKey("db.sql.table");
 
@@ -185,19 +203,21 @@ public final class SemanticAttributes {
    * SHOULD be set to true if the exception event is recorded at a point where it is known that the
    * exception is escaping the scope of the span.
    *
-   * <p>Note: An exception is considered to have escaped (or left) the scope of a span, if that span
-   * is ended while the exception is still logically &#34;in flight&#34;. This may be actually
-   * &#34;in flight&#34; in some languages (e.g. if the exception is passed to a Context
-   * manager&#39;s `__exit__` method in Python) but will usually be caught at the point of recording
+   * <p>Notes:
+   *
+   * <p>An exception is considered to have escaped (or left) the scope of a span, if that span is
+   * ended while the exception is still logically &quot;in flight&quot;. This may be actually
+   * &quot;in flight&quot; in some languages (e.g. if the exception is passed to a Context manager's
+   * <code>__exit__</code> method in Python) but will usually be caught at the point of recording
    * the exception in most languages.
    *
    * <p>It is usually not possible to determine at the point where an exception is thrown whether it
    * will escape the scope of a span. However, it is trivial to know that an exception will escape,
-   * if one checks for an active exception just before ending the span, as done in the [example
-   * above](#exception-end-example).
+   * if one checks for an active exception just before ending the span, as done in the <a
+   * href="#exception-end-example">example above</a>.
    *
-   * <p>It follows that an exception may still escape the scope of the span even if the
-   * `exception.escaped` attribute was not set or set to false, since the event might have been
+   * <p>It follows that an exception may still escape the scope of the span even if the <code>
+   * exception.escaped</code> attribute was not set or set to false, since the event might have been
    * recorded at a time where it was not clear whether the exception will escape.
    */
   public static final AttributeKey<Boolean> EXCEPTION_ESCAPED = booleanKey("exception.escaped");
@@ -220,9 +240,9 @@ public final class SemanticAttributes {
       stringKey("faas.document.operation");
 
   /**
-   * A string containing the time when the data was accessed in the [ISO
-   * 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in
-   * [UTC](https://www.w3.org/TR/NOTE-datetime).
+   * A string containing the time when the data was accessed in the <a
+   * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a> format expressed in
+   * <a href="https://www.w3.org/TR/NOTE-datetime">UTC</a>.
    */
   public static final AttributeKey<String> FAAS_DOCUMENT_TIME = stringKey("faas.document.time");
 
@@ -233,15 +253,16 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> FAAS_DOCUMENT_NAME = stringKey("faas.document.name");
 
   /**
-   * A string containing the function invocation time in the [ISO
-   * 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in
-   * [UTC](https://www.w3.org/TR/NOTE-datetime).
+   * A string containing the function invocation time in the <a
+   * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a> format expressed in
+   * <a href="https://www.w3.org/TR/NOTE-datetime">UTC</a>.
    */
   public static final AttributeKey<String> FAAS_TIME = stringKey("faas.time");
 
   /**
-   * A string containing the schedule period as [Cron
-   * Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
+   * A string containing the schedule period as <a
+   * href="https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm">Cron
+   * Expression</a>.
    */
   public static final AttributeKey<String> FAAS_CRON = stringKey("faas.cron");
 
@@ -254,14 +275,19 @@ public final class SemanticAttributes {
   /**
    * The name of the invoked function.
    *
-   * <p>Note: SHOULD be equal to the `faas.name` resource attribute of the invoked function.
+   * <p>Notes:
+   *
+   * <p>SHOULD be equal to the <code>faas.name</code> resource attribute of the invoked function.
    */
   public static final AttributeKey<String> FAAS_INVOKED_NAME = stringKey("faas.invoked_name");
 
   /**
    * The cloud provider of the invoked function.
    *
-   * <p>Note: SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
+   * <p>Notes:
+   *
+   * <p>SHOULD be equal to the <code>cloud.provider</code> resource attribute of the invoked
+   * function.
    */
   public static final AttributeKey<String> FAAS_INVOKED_PROVIDER =
       stringKey("faas.invoked_provider");
@@ -269,7 +295,9 @@ public final class SemanticAttributes {
   /**
    * The cloud region of the invoked function.
    *
-   * <p>Note: SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
+   * <p>Notes:
+   *
+   * <p>SHOULD be equal to the <code>cloud.region</code> resource attribute of the invoked function.
    */
   public static final AttributeKey<String> FAAS_INVOKED_REGION = stringKey("faas.invoked_region");
 
@@ -277,8 +305,8 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> NET_TRANSPORT = stringKey("net.transport");
 
   /**
-   * Remote address of the peer (dotted decimal for IPv4 or
-   * [RFC5952](https://tools.ietf.org/html/rfc5952) for IPv6).
+   * Remote address of the peer (dotted decimal for IPv4 or <a
+   * href="https://tools.ietf.org/html/rfc5952">RFC5952</a> for IPv6)
    */
   public static final AttributeKey<String> NET_PEER_IP = stringKey("net.peer.ip");
 
@@ -288,26 +316,26 @@ public final class SemanticAttributes {
   /** Remote hostname or similar, see note below. */
   public static final AttributeKey<String> NET_PEER_NAME = stringKey("net.peer.name");
 
-  /** Like `net.peer.ip` but for the host IP. Useful in case of a multi-IP host. */
+  /** Like <code>net.peer.ip</code> but for the host IP. Useful in case of a multi-IP host. */
   public static final AttributeKey<String> NET_HOST_IP = stringKey("net.host.ip");
 
-  /** Like `net.peer.port` but for the host port. */
+  /** Like <code>net.peer.port</code> but for the host port. */
   public static final AttributeKey<Long> NET_HOST_PORT = longKey("net.host.port");
 
   /** Local hostname or similar, see note below. */
   public static final AttributeKey<String> NET_HOST_NAME = stringKey("net.host.name");
 
   /**
-   * The [`service.name`](../../resource/semantic_conventions/README.md#service) of the remote
-   * service. SHOULD be equal to the actual `service.name` resource attribute of the remote service
-   * if any.
+   * The <a href="../../resource/semantic_conventions/README.md#service"><code>service.name</code>
+   * </a> of the remote service. SHOULD be equal to the actual <code>service.name</code> resource
+   * attribute of the remote service if any.
    */
   public static final AttributeKey<String> PEER_SERVICE = stringKey("peer.service");
 
   /**
-   * Username or client_id extracted from the access token or
-   * [Authorization](https://tools.ietf.org/html/rfc7235#section-4.2) header in the inbound request
-   * from outside the system.
+   * Username or client_id extracted from the access token or <a
+   * href="https://tools.ietf.org/html/rfc7235#section-4.2">Authorization</a> header in the inbound
+   * request from outside the system.
    */
   public static final AttributeKey<String> ENDUSER_ID = stringKey("enduser.id");
 
@@ -319,29 +347,29 @@ public final class SemanticAttributes {
 
   /**
    * Scopes or granted authorities the client currently possesses extracted from token or
-   * application security context. The value would come from the scope associated with an [OAuth 2.0
-   * Access Token](https://tools.ietf.org/html/rfc6749#section-3.3) or an attribute value in a [SAML
-   * 2.0
-   * Assertion](http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html).
+   * application security context. The value would come from the scope associated with an <a
+   * href="https://tools.ietf.org/html/rfc6749#section-3.3">OAuth 2.0 Access Token</a> or an
+   * attribute value in a <a
+   * href="http://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-tech-overview-2.0.html">SAML
+   * 2.0 Assertion</a>.
    */
   public static final AttributeKey<String> ENDUSER_SCOPE = stringKey("enduser.scope");
 
-  /** Current &#34;managed&#34; thread ID (as opposed to OS thread ID). */
+  /** Current &quot;managed&quot; thread ID (as opposed to OS thread ID). */
   public static final AttributeKey<Long> THREAD_ID = longKey("thread.id");
 
   /** Current thread name. */
   public static final AttributeKey<String> THREAD_NAME = stringKey("thread.name");
 
   /**
-   * The method or function name, or equivalent (usually rightmost part of the code unit&#39;s
-   * name).
+   * The method or function name, or equivalent (usually rightmost part of the code unit's name).
    */
   public static final AttributeKey<String> CODE_FUNCTION = stringKey("code.function");
 
   /**
-   * The &#34;namespace&#34; within which `code.function` is defined. Usually the qualified class or
-   * module name, such that `code.namespace` + some separator + `code.function` form a unique
-   * identifier for the code unit.
+   * The &quot;namespace&quot; within which <code>code.function</code> is defined. Usually the
+   * qualified class or module name, such that <code>code.namespace</code> + some separator + <code>
+   * code.function</code> form a unique identifier for the code unit.
    */
   public static final AttributeKey<String> CODE_NAMESPACE = stringKey("code.namespace");
 
@@ -352,8 +380,8 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> CODE_FILEPATH = stringKey("code.filepath");
 
   /**
-   * The line number in `code.filepath` best representing the operation. It SHOULD point within the
-   * code unit named in `code.function`.
+   * The line number in <code>code.filepath</code> best representing the operation. It SHOULD point
+   * within the code unit named in <code>code.function</code>.
    */
   public static final AttributeKey<Long> CODE_LINENO = longKey("code.lineno");
 
@@ -361,12 +389,15 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> HTTP_METHOD = stringKey("http.method");
 
   /**
-   * Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. Usually the
-   * fragment is not transmitted over HTTP, but if it is known, it should be included nevertheless.
+   * Full HTTP request URL in the form <code>scheme://host[:port]/path?query[#fragment]</code>.
+   * Usually the fragment is not transmitted over HTTP, but if it is known, it should be included
+   * nevertheless.
    *
-   * <p>Note: `http.url` MUST NOT contain credentials passed via URL in form of
-   * `https://username:password@www.example.com/`. In such case the attribute&#39;s value should be
-   * `https://www.example.com/`.
+   * <p>Notes:
+   *
+   * <p><code>http.url</code> MUST NOT contain credentials passed via URL in form of <code>
+   * https://username:password@www.example.com/</code>. In such case the attribute's value should be
+   * <code>https://www.example.com/</code>.
    */
   public static final AttributeKey<String> HTTP_URL = stringKey("http.url");
 
@@ -374,36 +405,39 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> HTTP_TARGET = stringKey("http.target");
 
   /**
-   * The value of the [HTTP host header](https://tools.ietf.org/html/rfc7230#section-5.4). When the
-   * header is empty or not present, this attribute should be the same.
+   * The value of the <a href="https://tools.ietf.org/html/rfc7230#section-5.4">HTTP host
+   * header</a>. When the header is empty or not present, this attribute should be the same.
    */
   public static final AttributeKey<String> HTTP_HOST = stringKey("http.host");
 
   /** The URI scheme identifying the used protocol. */
   public static final AttributeKey<String> HTTP_SCHEME = stringKey("http.scheme");
 
-  /** [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). */
+  /** <a href="https://tools.ietf.org/html/rfc7231#section-6">HTTP response status code</a>. */
   public static final AttributeKey<Long> HTTP_STATUS_CODE = longKey("http.status_code");
 
   /**
    * Kind of HTTP protocol used.
    *
-   * <p>Note: If `net.transport` is not specified, it can be assumed to be `IP.TCP` except if
-   * `http.flavor` is `QUIC`, in which case `IP.UDP` is assumed.
+   * <p>Notes:
+   *
+   * <p>If <code>net.transport</code> is not specified, it can be assumed to be <code>IP.TCP</code>
+   * except if <code>http.flavor</code> is <code>QUIC</code>, in which case <code>IP.UDP</code> is
+   * assumed.
    */
   public static final AttributeKey<String> HTTP_FLAVOR = stringKey("http.flavor");
 
   /**
-   * Value of the [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3) header sent
-   * by the client.
+   * Value of the <a href="https://tools.ietf.org/html/rfc7231#section-5.5.3">HTTP User-Agent</a>
+   * header sent by the client.
    */
   public static final AttributeKey<String> HTTP_USER_AGENT = stringKey("http.user_agent");
 
   /**
    * The size of the request payload body in bytes. This is the number of bytes transferred
-   * excluding headers and is often, but not always, present as the
-   * [Content-Length](https://tools.ietf.org/html/rfc7230#section-3.3.2) header. For requests using
-   * transport encoding, this should be the compressed size.
+   * excluding headers and is often, but not always, present as the <a
+   * href="https://tools.ietf.org/html/rfc7230#section-3.3.2">Content-Length</a> header. For
+   * requests using transport encoding, this should be the compressed size.
    */
   public static final AttributeKey<Long> HTTP_REQUEST_CONTENT_LENGTH =
       longKey("http.request_content_length");
@@ -417,9 +451,9 @@ public final class SemanticAttributes {
 
   /**
    * The size of the response payload body in bytes. This is the number of bytes transferred
-   * excluding headers and is often, but not always, present as the
-   * [Content-Length](https://tools.ietf.org/html/rfc7230#section-3.3.2) header. For requests using
-   * transport encoding, this should be the compressed size.
+   * excluding headers and is often, but not always, present as the <a
+   * href="https://tools.ietf.org/html/rfc7230#section-3.3.2">Content-Length</a> header. For
+   * requests using transport encoding, this should be the compressed size.
    */
   public static final AttributeKey<Long> HTTP_RESPONSE_CONTENT_LENGTH =
       longKey("http.response_content_length");
@@ -433,11 +467,13 @@ public final class SemanticAttributes {
 
   /**
    * The primary server name of the matched virtual host. This should be obtained via configuration.
-   * If no such configuration can be obtained, this attribute MUST NOT be set ( `net.host.name`
-   * should be used instead).
+   * If no such configuration can be obtained, this attribute MUST NOT be set ( <code>net.host.name
+   * </code> should be used instead).
    *
-   * <p>Note: `http.url` is usually not readily available on the server side but would have to be
-   * assembled in a cumbersome and sometimes lossy process from other information (see e.g.
+   * <p>Notes:
+   *
+   * <p><code>http.url</code> is usually not readily available on the server side but would have to
+   * be assembled in a cumbersome and sometimes lossy process from other information (see e.g.
    * open-telemetry/opentelemetry-python/pull/148). It is thus preferred to supply the raw data that
    * is available.
    */
@@ -447,96 +483,105 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> HTTP_ROUTE = stringKey("http.route");
 
   /**
-   * The IP address of the original client behind all proxies, if known (e.g. from
-   * [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For)).
+   * The IP address of the original client behind all proxies, if known (e.g. from <a
+   * href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For">X-Forwarded-For</a>).
    *
-   * <p>Note: This is not necessarily the same as `net.peer.ip`, which would identify the
+   * <p>Notes:
+   *
+   * <p>This is not necessarily the same as <code>net.peer.ip</code>, which would identify the
    * network-level peer, which may be a proxy.
    */
   public static final AttributeKey<String> HTTP_CLIENT_IP = stringKey("http.client_ip");
 
-  /** The keys in the `RequestItems` object field. */
+  /** The keys in the <code>RequestItems</code> object field. */
   public static final AttributeKey<List<String>> AWS_DYNAMODB_TABLE_NAMES =
       stringArrayKey("aws.dynamodb.table_names");
 
-  /** The JSON-serialized value of each item in the `ConsumedCapacity` response field. */
+  /** The JSON-serialized value of each item in the <code>ConsumedCapacity</code> response field. */
   public static final AttributeKey<List<String>> AWS_DYNAMODB_CONSUMED_CAPACITY =
       stringArrayKey("aws.dynamodb.consumed_capacity");
 
-  /** The JSON-serialized value of the `ItemCollectionMetrics` response field. */
+  /** The JSON-serialized value of the <code>ItemCollectionMetrics</code> response field. */
   public static final AttributeKey<String> AWS_DYNAMODB_ITEM_COLLECTION_METRICS =
       stringKey("aws.dynamodb.item_collection_metrics");
 
-  /** The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter. */
+  /** The value of the <code>ProvisionedThroughput.ReadCapacityUnits</code> request parameter. */
   public static final AttributeKey<Double> AWS_DYNAMODB_PROVISIONED_READ_CAPACITY =
       doubleKey("aws.dynamodb.provisioned_read_capacity");
 
-  /** The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter. */
+  /** The value of the <code>ProvisionedThroughput.WriteCapacityUnits</code> request parameter. */
   public static final AttributeKey<Double> AWS_DYNAMODB_PROVISIONED_WRITE_CAPACITY =
       doubleKey("aws.dynamodb.provisioned_write_capacity");
 
-  /** The value of the `ConsistentRead` request parameter. */
+  /** The value of the <code>ConsistentRead</code> request parameter. */
   public static final AttributeKey<Boolean> AWS_DYNAMODB_CONSISTENT_READ =
       booleanKey("aws.dynamodb.consistent_read");
 
-  /** The value of the `ProjectionExpression` request parameter. */
+  /** The value of the <code>ProjectionExpression</code> request parameter. */
   public static final AttributeKey<String> AWS_DYNAMODB_PROJECTION =
       stringKey("aws.dynamodb.projection");
 
-  /** The value of the `Limit` request parameter. */
+  /** The value of the <code>Limit</code> request parameter. */
   public static final AttributeKey<Long> AWS_DYNAMODB_LIMIT = longKey("aws.dynamodb.limit");
 
-  /** The value of the `AttributesToGet` request parameter. */
+  /** The value of the <code>AttributesToGet</code> request parameter. */
   public static final AttributeKey<List<String>> AWS_DYNAMODB_ATTRIBUTES_TO_GET =
       stringArrayKey("aws.dynamodb.attributes_to_get");
 
-  /** The value of the `IndexName` request parameter. */
+  /** The value of the <code>IndexName</code> request parameter. */
   public static final AttributeKey<String> AWS_DYNAMODB_INDEX_NAME =
       stringKey("aws.dynamodb.index_name");
 
-  /** The value of the `Select` request parameter. */
+  /** The value of the <code>Select</code> request parameter. */
   public static final AttributeKey<String> AWS_DYNAMODB_SELECT = stringKey("aws.dynamodb.select");
 
-  /** The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field. */
+  /**
+   * The JSON-serialized value of each item of the <code>GlobalSecondaryIndexes</code> request field
+   */
   public static final AttributeKey<List<String>> AWS_DYNAMODB_GLOBAL_SECONDARY_INDEXES =
       stringArrayKey("aws.dynamodb.global_secondary_indexes");
 
-  /** The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field. */
+  /**
+   * The JSON-serialized value of each item of the <code>LocalSecondaryIndexes</code> request field.
+   */
   public static final AttributeKey<List<String>> AWS_DYNAMODB_LOCAL_SECONDARY_INDEXES =
       stringArrayKey("aws.dynamodb.local_secondary_indexes");
 
-  /** The value of the `ExclusiveStartTableName` request parameter. */
+  /** The value of the <code>ExclusiveStartTableName</code> request parameter. */
   public static final AttributeKey<String> AWS_DYNAMODB_EXCLUSIVE_START_TABLE =
       stringKey("aws.dynamodb.exclusive_start_table");
 
-  /** The the number of items in the `TableNames` response parameter. */
+  /** The the number of items in the <code>TableNames</code> response parameter. */
   public static final AttributeKey<Long> AWS_DYNAMODB_TABLE_COUNT =
       longKey("aws.dynamodb.table_count");
 
-  /** The value of the `ScanIndexForward` request parameter. */
+  /** The value of the <code>ScanIndexForward</code> request parameter. */
   public static final AttributeKey<Boolean> AWS_DYNAMODB_SCAN_FORWARD =
       booleanKey("aws.dynamodb.scan_forward");
 
-  /** The value of the `Segment` request parameter. */
+  /** The value of the <code>Segment</code> request parameter. */
   public static final AttributeKey<Long> AWS_DYNAMODB_SEGMENT = longKey("aws.dynamodb.segment");
 
-  /** The value of the `TotalSegments` request parameter. */
+  /** The value of the <code>TotalSegments</code> request parameter. */
   public static final AttributeKey<Long> AWS_DYNAMODB_TOTAL_SEGMENTS =
       longKey("aws.dynamodb.total_segments");
 
-  /** The value of the `Count` response parameter. */
+  /** The value of the <code>Count</code> response parameter. */
   public static final AttributeKey<Long> AWS_DYNAMODB_COUNT = longKey("aws.dynamodb.count");
 
-  /** The value of the `ScannedCount` response parameter. */
+  /** The value of the <code>ScannedCount</code> response parameter. */
   public static final AttributeKey<Long> AWS_DYNAMODB_SCANNED_COUNT =
       longKey("aws.dynamodb.scanned_count");
 
-  /** The JSON-serialized value of each item in the `AttributeDefinitions` request field. */
+  /**
+   * The JSON-serialized value of each item in the <code>AttributeDefinitions</code> request field.
+   */
   public static final AttributeKey<List<String>> AWS_DYNAMODB_ATTRIBUTE_DEFINITIONS =
       stringArrayKey("aws.dynamodb.attribute_definitions");
 
   /**
-   * The JSON-serialized value of each item in the the `GlobalSecondaryIndexUpdates` request field.
+   * The JSON-serialized value of each item in the the <code>GlobalSecondaryIndexUpdates</code>
+   * request field.
    */
   public static final AttributeKey<List<String>> AWS_DYNAMODB_GLOBAL_SECONDARY_INDEX_UPDATES =
       stringArrayKey("aws.dynamodb.global_secondary_index_updates");
@@ -551,7 +596,7 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> MESSAGING_DESTINATION =
       stringKey("messaging.destination");
 
-  /** The kind of message destination. */
+  /** The kind of message destination */
   public static final AttributeKey<String> MESSAGING_DESTINATION_KIND =
       stringKey("messaging.destination_kind");
 
@@ -575,8 +620,8 @@ public final class SemanticAttributes {
   public static final AttributeKey<String> MESSAGING_MESSAGE_ID = stringKey("messaging.message_id");
 
   /**
-   * The [conversation ID](#conversations) identifying the conversation to which the message
-   * belongs, represented as a string. Sometimes called &#34;Correlation ID&#34;.
+   * The <a href="#conversations">conversation ID</a> identifying the conversation to which the
+   * message belongs, represented as a string. Sometimes called &quot;Correlation ID&quot;.
    */
   public static final AttributeKey<String> MESSAGING_CONVERSATION_ID =
       stringKey("messaging.conversation_id");
@@ -593,9 +638,10 @@ public final class SemanticAttributes {
       longKey("messaging.message_payload_compressed_size_bytes");
 
   /**
-   * A string identifying the kind of message consumption as defined in the [Operation
-   * names](#operation-names) section above. If the operation is &#34;send&#34;, this attribute MUST
-   * NOT be set, since the operation can be inferred from the span kind in that case.
+   * A string identifying the kind of message consumption as defined in the <a
+   * href="#operation-names">Operation names</a> section above. If the operation is
+   * &quot;send&quot;, this attribute MUST NOT be set, since the operation can be inferred from the
+   * span kind in that case.
    */
   public static final AttributeKey<String> MESSAGING_OPERATION = stringKey("messaging.operation");
 
@@ -604,13 +650,14 @@ public final class SemanticAttributes {
       stringKey("messaging.rabbitmq.routing_key");
 
   /**
-   * Message keys in Kafka are used for grouping alike messages to ensure they&#39;re processed on
-   * the same partition. They differ from `messaging.message_id` in that they&#39;re not unique. If
-   * the key is `null`, the attribute MUST NOT be set.
+   * Message keys in Kafka are used for grouping alike messages to ensure they're processed on the
+   * same partition. They differ from <code>messaging.message_id</code> in that they're not unique.
+   * If the key is <code>null</code>, the attribute MUST NOT be set.
    *
-   * <p>Note: If the key type is not string, it&#39;s string representation has to be supplied for
-   * the attribute. If the key has no unambiguous, canonical string form, don&#39;t include its
-   * value.
+   * <p>Notes:
+   *
+   * <p>If the key type is not string, it's string representation has to be supplied for the
+   * attribute. If the key has no unambiguous, canonical string form, don't include its value.
    */
   public static final AttributeKey<String> MESSAGING_KAFKA_MESSAGE_KEY =
       stringKey("messaging.kafka.message_key");
@@ -640,11 +687,13 @@ public final class SemanticAttributes {
   /**
    * The full (logical) name of the service being called, including its package name, if applicable.
    *
-   * <p>Note: This is the logical name of the service from the RPC interface perspective, which can
-   * be different from the name of any implementing class. The `code.namespace` attribute may be
-   * used to store the latter (despite the attribute name, it may include a class name; e.g., class
-   * with method actually executing the call on the server side, RPC client stub class on the client
-   * side).
+   * <p>Notes:
+   *
+   * <p>This is the logical name of the service from the RPC interface perspective, which can be
+   * different from the name of any implementing class. The <code>code.namespace</code> attribute
+   * may be used to store the latter (despite the attribute name, it may include a class name; e.g.,
+   * class with method actually executing the call on the server side, RPC client stub class on the
+   * client side).
    */
   public static final AttributeKey<String> RPC_SERVICE = stringKey("rpc.service");
 
@@ -652,37 +701,40 @@ public final class SemanticAttributes {
    * The name of the (logical) method being called, must be equal to the $method part in the span
    * name.
    *
-   * <p>Note: This is the logical name of the method from the RPC interface perspective, which can
-   * be different from the name of any implementing method/function. The `code.function` attribute
-   * may be used to store the latter (e.g., method actually executing the call on the server side,
-   * RPC client stub method on the client side).
+   * <p>Notes:
+   *
+   * <p>This is the logical name of the method from the RPC interface perspective, which can be
+   * different from the name of any implementing method/function. The <code>code.function</code>
+   * attribute may be used to store the latter (e.g., method actually executing the call on the
+   * server side, RPC client stub method on the client side).
    */
   public static final AttributeKey<String> RPC_METHOD = stringKey("rpc.method");
 
   /**
-   * The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the
-   * gRPC request.
+   * The <a href="https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md">numeric status
+   * code</a> of the gRPC request.
    */
   public static final AttributeKey<Long> RPC_GRPC_STATUS_CODE = longKey("rpc.grpc.status_code");
 
   /**
-   * Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 does not
-   * specify this, the value can be omitted.
+   * Protocol version as in <code>jsonrpc</code> property of request/response. Since JSON-RPC 1.0
+   * does not specify this, the value can be omitted.
    */
   public static final AttributeKey<String> RPC_JSONRPC_VERSION = stringKey("rpc.jsonrpc.version");
 
   /**
-   * `id` property of request or response. Since protocol allows id to be int, string, `null` or
-   * missing (for notifications), value is expected to be cast to string for simplicity. Use empty
-   * string in case of `null` value. Omit entirely if this is a notification.
+   * <code>id</code> property of request or response. Since protocol allows id to be int, string,
+   * <code>null</code> or missing (for notifications), value is expected to be cast to string for
+   * simplicity. Use empty string in case of <code>null</code> value. Omit entirely if this is a
+   * notification.
    */
   public static final AttributeKey<String> RPC_JSONRPC_REQUEST_ID =
       stringKey("rpc.jsonrpc.request_id");
 
-  /** `error.code` property of response if it is an error response. */
+  /** <code>error.code</code> property of response if it is an error response. */
   public static final AttributeKey<Long> RPC_JSONRPC_ERROR_CODE = longKey("rpc.jsonrpc.error_code");
 
-  /** `error.message` property of response if it is an error response. */
+  /** <code>error.message</code> property of response if it is an error response. */
   public static final AttributeKey<String> RPC_JSONRPC_ERROR_MESSAGE =
       stringKey("rpc.jsonrpc.error_message");
 

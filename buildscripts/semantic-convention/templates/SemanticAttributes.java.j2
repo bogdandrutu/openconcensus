@@ -64,10 +64,10 @@ public final class {{class}} {
   {%- for attribute in attributes if attribute.is_local and not attribute.ref %}
 
   /**
-  * {% filter escape %}{{attribute.brief | to_doc_brief}}.{% endfilter %}
+  * {% filter safe %}{{attribute.brief | render_markdown}}{% endfilter %}
     {%- if attribute.note %}
   *
-  * Note: {% filter escape %}{{attribute.note | to_doc_brief}}.{% endfilter %}
+  * <p>Notes: {% filter safe %}{{attribute.note | render_markdown}}{% endfilter %}
     {%- endif %}
     {%- if attribute.deprecated %}
   *
