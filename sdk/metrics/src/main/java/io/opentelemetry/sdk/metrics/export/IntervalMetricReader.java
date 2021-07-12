@@ -122,7 +122,7 @@ public final class IntervalMetricReader {
         return this;
       }
       scheduledFuture =
-          scheduler.scheduleAtFixedRate(
+          scheduler.scheduleWithFixedDelay(
               exporter,
               exporter.internalState.getExportIntervalMillis(),
               exporter.internalState.getExportIntervalMillis(),
@@ -154,10 +154,10 @@ public final class IntervalMetricReader {
 
     @Override
     public void run() {
-      // Ignore the CompletableResultCode from doRun() in order to keep run() asynchronous
-      doRun();
+      doRun().join(internalState.getExportIntervalMillis(), TimeUnit.MILLISECONDS);
     }
 
+    // Make sure not to throw any exceptions.
     CompletableResultCode doRun() {
       final CompletableResultCode flushResult = new CompletableResultCode();
       if (exportAvailable.compareAndSet(true, false)) {

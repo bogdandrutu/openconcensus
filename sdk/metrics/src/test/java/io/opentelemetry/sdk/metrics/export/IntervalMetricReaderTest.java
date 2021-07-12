@@ -70,7 +70,7 @@ class IntervalMetricReaderTest {
     ScheduledExecutorService scheduler = mock(ScheduledExecutorService.class);
 
     ScheduledFuture mock = mock(ScheduledFuture.class);
-    when(scheduler.scheduleAtFixedRate(any(), anyLong(), anyLong(), any())).thenReturn(mock);
+    when(scheduler.scheduleWithFixedDelay(any(), anyLong(), anyLong(), any())).thenReturn(mock);
 
     IntervalMetricReader intervalMetricReader =
         new IntervalMetricReader(
@@ -83,7 +83,7 @@ class IntervalMetricReaderTest {
     intervalMetricReader.start();
     intervalMetricReader.start();
 
-    verify(scheduler, times(1)).scheduleAtFixedRate(any(), anyLong(), anyLong(), any());
+    verify(scheduler, times(1)).scheduleWithFixedDelay(any(), anyLong(), anyLong(), any());
   }
 
   @Test
